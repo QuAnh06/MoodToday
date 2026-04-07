@@ -1,0 +1,140 @@
+/* mood-style.css */
+:root {
+    --primary-blue: #2D5BFF; /* Màu xanh chủ đạo giống Monex */
+    --bg-light: #F4F7FF;
+    --text-dark: #1A1C1E;
+    --text-gray: #6C757D;
+    --card-radius: 24px;
+    --button-radius: 16px;
+}
+
+body {
+    background-color: var(--bg-light);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Container chính có responsive */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Card layout phong cách Monex */
+.main-card {
+    background: #ffffff;
+    border-radius: var(--card-radius);
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(45, 91, 255, 0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+/* Typography */
+.display-title {
+    font-weight: 800;
+    color: var(--text-dark);
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+.sub-text {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Button phong cách Monex */
+.btn-monex {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 16px 32px;
+    border-radius: var(--button-radius);
+    font-weight: 700;
+    border: none;
+    transition: all 0.3s ease;
+    width: 100%; /* Mặc định full width cho mobile */
+}
+
+.btn-monex:hover {
+    background-color: #1a44d6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 91, 255, 0.3);
+}
+
+/* Responsive Grid */
+@media (min-width: 768px) {
+    .splash-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    .btn-monex {
+        width: auto; /* PC thì nút thu gọn lại */
+    }
+    .display-title {
+        font-size: 3.5rem;
+    }
+}
+
+    .profile-header {
+        text-align: center;
+        padding: 20px 0 30px;
+    }
+    .avatar-large {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 30px; /* Bo góc đặc trưng Monex */
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: var(--primary-blue);
+        box-shadow: 0 10px 25px rgba(45, 91, 255, 0.1);
+        border: 2px solid #F0F4FF;
+    }
+    .stat-card {
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        border: 1px solid #F0F4FF;
+        height: 100%;
+    }
+    .streak-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--primary-blue);
+        line-height: 1;
+    }
+    .achievement-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #F8FAFC;
+    }
+    .achievement-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: #F0F4FF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: var(--primary-blue);
+    }
+
+/* Minh họa hoạt họa */
+.illustration-box img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+}
