@@ -7,13 +7,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/mood-style.css') }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/mood/mood-style.css') }}">
+
+    @stack('styles')
 </head>
 <body>
 
     <div class="app-main-content">
         
         <header class="top-header">
+            <div class="header-brand">MoodToday</div>
             <div class="dropdown">
                 <div class="profile-circle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-fill"></i>
@@ -46,30 +52,24 @@
             @yield('content')
         </div>
 
-        <nav class="bottom-nav">
-            <a href="{{ route('home') }}" class="nav-item {{ request()->is('home') ? 'active' : '' }}">
+        <div class="bottom-nav">
+            <a href="{{ route('home') }}" 
+                class="nav-item {{ request()->routeIs('home') && request('tab', 'home') === 'home' ? 'active' : '' }}">
                 <i class="bi bi-house-door-fill"></i>
                 <span>Home</span>
             </a>
-            <a href="{{ route('mood.checkin-ai') }}" class="nav-item {{ request()->routeIs('mood.checkin-ai') ? 'active' : '' }}">
-                <i class="bi bi-chat-dots-fill"></i>
-                <span>Mood AI</span>
-            </a>
             
-            <a href="{{ route('notifications') }}" class="nav-item {{ request()->is('notifications') ? 'active' : '' }}">
-                <i class="bi bi-bell-fill"></i>
-                <span>Thông báo</span>
+            <a href="{{ route('home', ['tab' => 'menu']) }}" 
+                class="nav-item {{ (request()->routeIs('home') && request('tab') === 'menu') || request()->routeIs('love.*', 'crush-message*', 'diary*') ? 'active' : '' }}">
+                
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+                <span>Menu</span>
             </a>
-            <a href="{{ route('settings') }}" class="nav-item {{ request()->is('settings') ? 'active' : '' }}">
-                <i class="bi bi-gear-fill"></i>
-                <span>Cài đặt</span>
-            </a>
-        </nav>
-
-
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     @stack('scripts')
 </body>
 </html>

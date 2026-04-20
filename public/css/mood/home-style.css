@@ -1,0 +1,694 @@
+.home-hero {
+        padding: 32px 28px;
+        border-radius: 38px;
+        background: linear-gradient(135deg, #7c5eff 0%, #a593ff 40%, #dfc9ff 100%);
+        box-shadow: 0 26px 68px rgba(101, 84, 255, 0.16);
+        margin-bottom: 28px;
+    }
+
+    .hero-welcome {
+        margin-bottom: 18px;
+    }
+    .hero-greeting {
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 1.2rem;
+        margin: -2px 0 6px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        line-height: 1.05;
+    }
+    .hero-you {
+        color: #facc15;
+    }
+    .hero-name {
+        font-size: 3.6rem;
+        font-weight: 900;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.02;
+    }
+    .week-strip {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 8px;
+    }
+    .week-pill {
+        padding: 12px 8px;
+        text-align: center;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(8px);
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .week-pill.active {
+        background: rgba(255, 255, 255, 0.95);
+        border-color: rgba(255, 255, 255, 0.95);
+        transform: translateY(-2px);
+    }
+    .week-pill .day-label {
+        display: block;
+        font-size: 0.68rem;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 3px;
+        font-weight: 700;
+    }
+    .week-pill.active .day-label {
+        color: #7c5eff;
+    }
+    .week-pill strong {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 800;
+    }
+    .week-pill.active strong {
+        color: #7c5eff;
+    }
+    .feeling-container {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    .feeling-title {
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0 0 12px;
+        line-height: 1.1;
+    }
+    .feeling-subtitle {
+        font-size: 1rem;
+        color: #64748b;
+        margin: 0 0 16px;
+    }
+    .mood-card-title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #0f172a;
+        text-align: center;
+        margin: 0 0 20px;
+        line-height: 1.2;
+    }
+    .home-tab-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-bottom: 22px;
+    }
+    .home-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 16px;
+        border-radius: 20px;
+        background: #f8fbff;
+        color: #1f2937;
+        text-decoration: none;
+        border: 1px solid transparent;
+        box-shadow: 0 10px 26px rgba(45, 91, 255, 0.08);
+        transition: all 0.25s ease;
+        font-weight: 700;
+    }
+    .home-tab.active {
+        border-color: rgba(45, 91, 255, 0.25);
+        background: linear-gradient(135deg, rgba(45, 91, 255, 0.12), rgba(45, 91, 255, 0.18));
+        color: #1d4ed8;
+        transform: translateY(-1px);
+    }
+    .home-card {
+        background: #f9e8ff;
+        border-radius: 32px;
+        box-shadow: 0 18px 40px rgba(45, 91, 255, 0.1);
+        padding: 22px;
+        border: 1px solid #f1dbff;
+        margin-bottom: 28px;
+    }
+    .mood-card-top {
+        background: #fde7ff;
+        border-radius: 30px;
+        padding: 24px 20px 18px;
+        margin-bottom: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: inset 0 3px 12px rgba(255, 255, 255, 0.8);
+    }
+    .mood-card-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0f172a;
+        text-align: center;
+        margin: 0 0 18px;
+        line-height: 1.1;
+    }
+    .mood-pill-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+    .mood-pill {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 12px;
+        min-width: 0;
+        border-radius: 18px;
+        border: 1.5px solid rgba(189, 171, 255, 0.6);
+        transition: all 0.25s ease;
+        background: #ffffff;
+        cursor: pointer;
+        color: #0f172a;
+        text-align: center;
+        min-height: 110px;
+        justify-content: center;
+    }
+    .mood-pill:hover {
+        transform: translateY(-2px) scale(1.03);
+        border-color: #c2b0ff;
+        background: #ffffff;
+        box-shadow: 0 10px 26px rgba(124, 94, 255, 0.18);
+    }
+    .mood-pill:hover .emoji {
+        transform: scale(1.22);
+    }
+    .mood-pill:hover .emoji-label {
+        color: #5b21b6;
+    }
+    .mood-pill input {
+        display: none;
+    }
+    .mood-pill input:checked + .emoji {
+        transform: scale(1.25);
+    }
+    .mood-pill input:checked ~ .emoji-label {
+        color: #7c5eff;
+        font-weight: 800;
+    }
+    .emoji {
+        font-size: 2rem;
+        transition: transform 0.25s ease;
+    }
+    .emoji-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #475569;
+    }
+    .home-textarea {
+        min-height: 124px;
+        resize: none;
+        border-radius: 22px;
+        border: 1.5px solid rgba(45,91,255,0.18);
+        background: rgba(255,255,255,0.95);
+        padding: 18px;
+    }
+    .home-textarea:focus {
+        border-color: rgba(45,91,255,0.45);
+        box-shadow: 0 0 0 4px rgba(45,91,255,0.08);
+    }
+    .journal-preview {
+        margin-top: 28px;
+    }
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        margin-bottom: 18px;
+    }
+    .section-header h3 {
+        margin: 0;
+        font-size: 1.45rem;
+        color: #111827;
+    }
+    .section-header p {
+        margin: 4px 0 0;
+        color: #64748b;
+        font-size: 0.95rem;
+    }
+    .link-more {
+        color: #2563eb;
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .journal-slider {
+        overflow: hidden;
+        padding-bottom: 8px;
+    }
+    .journal-slider .swiper-wrapper {
+        padding-bottom: 4px;
+    }
+    .journal-card-custom {
+        display: flex;
+        flex-direction: column;
+        min-height: 240px;
+        width: 285px;
+        padding: 22px;
+        border-radius: 28px;
+        border: 1px solid rgba(45, 91, 255, 0.14);
+        background: linear-gradient(180deg, rgba(232, 242, 255, 0.98), rgba(255, 255, 255, 0.96));
+        box-shadow: 0 18px 48px rgba(45, 91, 255, 0.08);
+        gap: 14px;
+    }
+    .journal-card-custom:nth-child(odd) {
+        background: linear-gradient(180deg, #edf4ff 0%, #f8fbff 100%);
+    }
+    .journal-card-custom:nth-child(even) {
+        background: linear-gradient(180deg, #e6f7ff 0%, #f8fcff 100%);
+    }
+    .journal-card-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    .journal-date {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 18px;
+        background: rgba(45, 91, 255, 0.12);
+        color: #1e3a8a;
+        font-weight: 700;
+        font-size: 0.82rem;
+    }
+    .journal-mood-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(45, 91, 255, 0.12);
+        color: #1d4ed8;
+        font-weight: 700;
+        font-size: 0.88rem;
+    }
+    .journal-content {
+        flex: 1;
+        color: #334155;
+        font-size: 0.98rem;
+        line-height: 1.7;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+    }
+    .journal-card-custom p {
+        margin: 0;
+    }
+    .show-more-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: #111827;
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin-top: auto;
+    }
+    .show-more-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px rgba(17, 24, 39, 0.16);
+    }
+    .journal-card-empty {
+        min-height: 160px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 32px 22px;
+        background: rgba(255, 255, 255, 0.96);
+    }
+    .journal-card-empty p {
+        color: #64748b;
+        font-size: 1rem;
+        margin: 0;
+    }
+    .journal-card-more {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 240px;
+        width: 285px;
+        padding: 24px;
+        border-radius: 28px;
+        background: rgba(45, 91, 255, 0.08);
+        border: 1px dashed rgba(45, 91, 255, 0.3);
+        text-decoration: none;
+        color: #111827;
+        box-shadow: inset 0 0 0 1px rgba(45, 91, 255, 0.1);
+        gap: 16px;
+    }
+    .journal-card-more:hover {
+        background: rgba(45, 91, 255, 0.12);
+    }
+    .more-icon {
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: #1e3a8a;
+        line-height: 1;
+    }
+    .more-text strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+    }
+    .more-text p {
+        margin: 0;
+        color: #475569;
+        line-height: 1.6;
+        font-size: 0.92rem;
+    }
+    .swiper-slide {
+        width: auto !important;
+    }
+
+    .menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 22px 20px;
+        border-radius: 28px;
+        background: #ffffff;
+        box-shadow: 0 18px 40px rgba(45, 91, 255, 0.06);
+        border: 1px solid #eef2ff;
+    }
+    .menu-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        color: #1f2937;
+    }
+    .brand-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #7c5eff 0%, #a593ff 100%);
+        box-shadow: 0 5px 18px rgba(124, 94, 255, 0.24);
+    }
+    .menu-search {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        border: none;
+        background: #eff6ff;
+        color: #2d5bff;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        box-shadow: inset 0 2px 6px rgba(45, 91, 255, 0.08);
+    }
+    .menu-intro {
+        margin-bottom: 24px;
+    }
+    .menu-intro h2 {
+        margin: 0;
+        font-size: 1.95rem;
+        color: #0f172a;
+        font-weight: 900;
+        line-height: 1.05;
+    }
+    .menu-intro-copy {
+        margin: 12px 0 0;
+        color: #475569;
+        font-size: 0.96rem;
+        line-height: 1.65;
+        max-width: 620px;
+    }
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+    }
+    .menu-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        padding: 26px;
+        border-radius: 32px;
+        min-height: 190px;
+        background: #ffffff;
+        box-shadow: 0 22px 48px rgba(45, 91, 255, 0.08);
+        text-decoration: none;
+        color: #1f2937;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid transparent;
+    }
+    .menu-card::after {
+        content: '';
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.35);
+        pointer-events: none;
+        filter: blur(1px);
+    }
+    .menu-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 14px;
+    }
+    .menu-card-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 20px;
+        display: grid;
+        place-items: center;
+        font-size: 1.35rem;
+        color: white;
+        background: linear-gradient(135deg, #2D5BFF 0%, #1C3AC9 100%);
+        box-shadow: 0 10px 24px rgba(45, 91, 255, 0.18);
+    }
+    .menu-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 28px 60px rgba(45, 91, 255, 0.18);
+        border-color: rgba(45, 91, 255, 0.18);
+        background: #f8fbff;
+    }
+    .menu-card:hover .menu-card-icon {
+        transform: scale(1.05);
+    }
+    .menu-card h5 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        line-height: 1.25;
+        margin: 0 0 10px;
+        color: #111827;
+    }
+    .menu-card-copy {
+        margin: 0;
+        color: #475569;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        max-width: 100%;
+    }
+    .menu-card-arrow {
+        align-self: end;
+        color: #3b82f6;
+        font-size: 1.8rem;
+        opacity: 0.85;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .menu-card:hover .menu-card-arrow {
+        transform: translateX(3px);
+        opacity: 1;
+    }
+    .card-primary {
+        background: linear-gradient(135deg, #eef2ff 0%, #f8f9ff 100%);
+    }
+    .card-secondary {
+        background: linear-gradient(135deg, #fff1f2 0%, #fff7f9 100%);
+    }
+    .card-tertiary {
+        background: linear-gradient(135deg, #eff6ff 0%, #f8fbff 100%);
+    }
+    .card-quaternary {
+        background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+    }
+    .card-primary .menu-card-icon { background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%); }
+    .card-secondary .menu-card-icon { background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%); }
+    .card-tertiary .menu-card-icon { background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%); }
+    .card-quaternary .menu-card-icon { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+    @media (max-width: 720px) {
+        .home-tab-buttons,
+        .menu-grid {
+            grid-template-columns: 1fr;
+        }
+        .menu-card {
+            grid-template-columns: 1fr;
+        }
+        .menu-card-arrow {
+            justify-self: start;
+        }
+    }
+
+/* ========================================================================== */
+/* MOOD CHART & CUSTOM DROPDOWN - MOODTODAY BRANDING                          */
+/* ========================================================================== */
+
+/* 1. LAYOUT CHUNG CỦA PHẦN BIỂU ĐỒ */
+.mood-chart-section {
+    position: relative;
+    z-index: 10;
+}
+
+.mood-chart-card {
+    background: #ffffff;
+    border-radius: 30px; /* Bo góc 30px đồng bộ với app */
+    padding: 25px 15px;
+    box-shadow: 0 10px 30px rgba(163, 137, 244, 0.08); /* Bóng đổ tím nhạt */
+    margin-top: 10px;
+}
+
+/* 2. CUSTOM DROPDOWN STYLE (Thay thế thẻ select mặc định) */
+.custom-dropdown {
+    position: relative;
+    width: 145px;
+    z-index: 1000;
+}
+
+.dropdown-trigger {
+    background: #f3f0ff;
+    border-radius: 12px;
+    padding: 6px 14px;
+    border: 1px solid #e9e4ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #a389f4; /* Màu tím lavender chủ đạo */
+    transition: all 0.3s ease;
+}
+
+.dropdown-trigger:hover {
+    background: #ebe4ff;
+}
+
+/* Danh sách sổ xuống khi nhấn */
+.dropdown-options {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 15px;
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    
+    /* Hiệu ứng Motion: Trượt xuống và mờ dần */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 15px 35px rgba(163, 137, 244, 0.15);
+    border: 1px solid #f3f0ff;
+}
+
+/* Trạng thái khi Dropdown đang mở */
+.custom-dropdown.active .dropdown-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.custom-dropdown.active .bi-chevron-down {
+    transform: rotate(180deg); /* Xoay mũi tên lên trên */
+}
+
+.bi-chevron-down {
+    transition: transform 0.3s ease;
+    font-size: 0.75rem;
+}
+
+.dropdown-options li {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #4b5563;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.dropdown-options li:hover {
+    background: #f3f0ff;
+    color: #a389f4;
+}
+
+.dropdown-options li.active {
+    background: #a389f4;
+    color: white;
+}
+
+/* 3. CẤU TRÚC BIỂU ĐỒ CỘT */
+.chart-container-flex {
+    display: flex !important;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 180px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.chart-column-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+}
+
+.count-number {
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: #1f2937; /* Màu Navy đậm sạch sẽ */
+}
+
+/* Cái ống rỗng của cột */
+.bar-tube {
+    width: 28px;
+    height: 115px;
+    background-color: #f7f4ff !important; /* Nền ống màu tím cực nhạt */
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-end; /* Để thanh fill chạy từ dưới lên */
+    overflow: hidden;
+    margin-bottom: 10px;
+    border: 1px solid #f0ecff;
+}
+
+/* Phần nạp đầy màu sắc (Chính là phần có Motion) */
+.bar-progress {
+    width: 100%;
+    border-radius: 20px;
+    /* Hiệu ứng nảy nhẹ (Elastic) khi thay đổi giá trị */
+    transition: height 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 4. EMOJI DƯỚI CHÂN CỘT */
+.mood-emoji-footer {
+    font-size: 1.5rem; /* Emoji to rõ, dễ nhìn */
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.05));
+}

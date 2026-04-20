@@ -3,122 +3,64 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use App\Models\AiPrompt;
+
 
 class AiChatService
 {
-    /**
-     * Gọi OpenAI và trả về text output.
-     * - Giữ prompt pipeline: system + user.
-     * - Trả về null nếu không call được.
-     */
-    public function generateMoodReply(
-        string $systemPrompt,
-        string $userPrompt,
-        array $variables = []
-    ): ?string {
-        $apiKey = config('services.openai.api_key');
-        if (!$apiKey) {
-            return null;
-        }
-
-        $model = (string) config('services.openai.model', 'gpt-4.1-mini');
-        $baseUrl = rtrim((string) config('services.openai.base_url', 'https://api.openai.com/v1'), '/');
-        $timeout = (int) config('services.openai.timeout', 30);
-
-        $system = $this->interpolate($systemPrompt, $variables);
-        $user = $this->interpolate($userPrompt, $variables);
-
-        try {
-            $res = Http::timeout($timeout)
-                ->withToken($apiKey)
-                ->acceptJson()
-                ->asJson()
-                ->post($baseUrl . '/responses', [
-                    'model' => $model,
-                    'input' => [
-                        [
-                            'role' => 'system',
-                            'content' => [
-                                ['type' => 'input_text', 'text' => $system],
-                            ],
-                        ],
-                        [
-                            'role' => 'user',
-                            'content' => [
-                                ['type' => 'input_text', 'text' => $user],
-                            ],
-                        ],
-                    ],
-                    // Giữ output ngắn gọn và đúng format text
-                    'text' => [
-                        'format' => ['type' => 'text'],
-                    ],
-                ]);
-
-            if (!$res->successful()) {
-                return null;
-            }
-
-            $data = $res->json();
-
-            // Responses API thường có output_text
-            if (is_array($data) && isset($data['output_text']) && is_string($data['output_text'])) {
-                $out = trim($data['output_text']);
-                return $out !== '' ? $out : null;
-            }
-
-            // Fallback: gom từ output[].content[].text
-            $out = $this->extractTextFromResponsesPayload($data);
-            $out = trim((string) $out);
-            return $out !== '' ? $out : null;
-        } catch (\Throwable $e) {
-            return null;
-        }
+    public function generateMoodAdvice($userText, $moodLabel)
+    {
+        return $this->askAI('mood_advice', [
+            'text' => $userText,
+            'mood' => $moodLabel
+        ]);
     }
 
-    private function interpolate(string $template, array $variables): string
+    public function generateLoveAdvice($name1, $name2)
     {
-        // Hỗ trợ placeholder {user_text}, {mood_label}, ...
-        $out = $template;
-        foreach ($variables as $key => $value) {
-            $placeholder = '{' . $key . '}';
-            $out = str_replace($placeholder, (string) $value, $out);
-        }
-        return $out;
+        return $this->askAI('love_percent', [
+            'name1' => $name1,
+            'name2' => $name2
+        ]);
     }
 
-    private function extractTextFromResponsesPayload(mixed $data): ?string
+    private function askAI($type, $params = [])
     {
-        if (!is_array($data)) {
-            return null;
-        }
-        $output = $data['output'] ?? null;
-        if (!is_array($output)) {
+
+        $promptRecord = AiPrompt::where('prompt_type', $type)
+            ->where('is_active', true)
+            ->first();
+
+        if (!$promptRecord) {
             return null;
         }
 
-        $chunks = [];
-        foreach ($output as $item) {
-            if (!is_array($item)) {
-                continue;
-            }
-            $content = $item['content'] ?? null;
-            if (!is_array($content)) {
-                continue;
-            }
-            foreach ($content as $c) {
-                if (!is_array($c)) {
-                    continue;
-                }
-                $text = $c['text'] ?? null;
-                if (is_string($text) && $text !== '') {
-                    $chunks[] = $text;
-                }
-            }
+        $template = $promptRecord->content;
+
+        // dd($params);
+
+        foreach ($params as $key => $value) {
+            $template = str_replace(":$key", $value, $template);
         }
 
-        $joined = trim(implode("\n", $chunks));
-        return $joined !== '' ? $joined : null;
+        $apiKey = env('GEMINI_API_KEY'); //config('GEMINI_API_KEY'); //services.gemini.api_key
+
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
+
+        $response = Http::post($url, [
+            'contents' => [
+                ['parts' => [['text' => $template]]]
+            ],
+            'generationConfig' => [
+                'response_mime_type' => 'application/json',
+            ]
+        ]);
+
+        //$resultText = data_get($response->json(), 'candidates.0.content.parts.0.text', '{}');
+
+        // if ($response->failed()) {
+        //     dd("Lỗi API Gemini:", $response->json());
+        // }
+        return trim($response->json('candidates.0.content.parts.0.text'));
     }
 }
-

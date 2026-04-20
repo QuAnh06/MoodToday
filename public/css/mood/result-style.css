@@ -1,0 +1,35 @@
+.ai-quote-card {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important; 
+    color: white !important; 
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 500;
+    box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glass-monex {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-badge {
+    background: rgba(45, 91, 255, 0.12);
+    color: #1d4ed8;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+}
+
+.bg-blue-soft {
+    background: rgba(45, 91, 255, 0.12) !important;
+}

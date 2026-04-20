@@ -1,0 +1,261 @@
+/* ========================================================================== */
+/* Love Percent Page Styles - MoodToday Brand Colors (Purple & Blue)          */
+/* Designer: Quang Anh & Gemini                                              */
+/* ========================================================================== */
+
+:root {
+    --app-purple: #a389f4;       /* Tím Lavender chuẩn Header Welcome */
+    --app-purple-deep: #8b6df2;   /* Tím đậm hơn cho focus */
+    --app-blue: #2563eb;         /* Xanh Blue chuẩn nút "Send Mood" */
+    --app-bg: #fdf4ff;           /* Nền trắng hồng cực nhẹ của app */
+    --app-card: #ffffff;         /* Trắng tinh cho các khối Card */
+    --app-text: #1f2937;         /* Navy đậm cho chữ chính */
+    --app-text-muted: #6b7280;   /* Xám mờ cho DOB/Phụ lục */
+    --app-shadow: rgba(163, 137, 244, 0.15); /* Bóng đổ tông tím mờ */
+}
+
+/* Helper Classes */
+.text-deep-dark { color: var(--app-text); }
+.text-purple { color: var(--app-purple); }
+.text-blue { color: var(--app-blue); }
+.text-muted-app { color: var(--app-text-muted); font-weight: 500; }
+
+/* ========================================================================== */
+/* --- 1. Global & Background --- */
+/* ========================================================================== */
+.app-container {
+    background: var(--app-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+/* Hiệu ứng mờ nền tông tím (Thay cho màu xanh sage cũ) */
+.app-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(163, 137, 244, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(196, 177, 249, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.app-container::after {
+    content: '✨';
+    position: absolute;
+    top: 20%; left: 10%;
+    font-size: 2rem;
+    animation: float 6s infinite;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* --- 2. Giao diện Back Button (Tông Tím) --- */
+.btn-back {
+    background: white;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 10px 16px;
+    color: var(--app-purple);
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-back:hover {
+    background: #ffffff;
+    transform: translateX(-3px);
+    border-color: var(--app-purple);
+}
+
+/* ========================================================================== */
+/* --- 3. Giao diện Input (Tông Sạch Sẽ, Bo Góc 30px như Journal) --- */
+/* ========================================================================== */
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.love-header-icon i {
+    font-size: 3rem;
+    color: var(--app-purple);
+    animation: sparkles 2s infinite;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--app-text);
+}
+
+.love-duo {
+    display: grid;
+    gap: 18px;
+    margin-top: 18px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Thẻ Card Trắng (Giống khung Journal trong ảnh của bạn) */
+.card-monex {
+    background: var(--app-card);
+    padding: 24px;
+    border-radius: 30px; /* Bo góc cực mạnh như app thật */
+    box-shadow: 0 10px 30px var(--app-shadow);
+    border: 1px solid #f3e8ff;
+    transition: all 0.3s ease;
+}
+
+.card-monex:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(163, 137, 244, 0.2);
+}
+
+.love-card-header i {
+    font-size: 1.4rem;
+    color: var(--app-purple);
+}
+
+/* NÚT BẤM PREMIUM (Màu Blue chuẩn nút "Send Mood") */
+.btn-monex-premium.btn-healing {
+    background: var(--app-blue) !important;
+    border: none;
+    border-radius: 25px;
+    padding: 16px 24px;
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.btn-monex-premium.btn-healing:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+}
+
+/* Input Form Sạch Sẽ */
+.form-control-healing {
+    width: 100%;
+    border-radius: 20px;
+    border: 1.5px solid #e5e7eb;
+    padding: 16px 18px;
+    background: #fcfaff;
+    transition: all 0.3s ease;
+}
+
+.form-control-healing:focus {
+    outline: none;
+    border-color: var(--app-purple);
+    box-shadow: 0 0 0 4px rgba(163, 137, 244, 0.1);
+}
+
+/* Result Placeholder */
+.result-placeholder {
+    background: white;
+    border: 2px dashed #dcd0ff; /* Viền tím nhạt */
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* ========================================================================== */
+/* --- 4. Giao diện KẾT QUẢ (PHÙ HỢP TỔNG THỂ) --- */
+/* ========================================================================== */
+
+.result-wrapper {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* THẺ BÓI CHÍNH (Đổi sang tông Tím Lavender chủ đạo) */
+.love-card-main {
+    background: linear-gradient(180deg, #f3f0ff 0%, #ffffff 100%);
+    width: 90%;
+    border-radius: 35px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 15px 40px var(--app-shadow);
+    border: 2px solid white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bóng mờ bubbles màu tím nhạt */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(163, 137, 244, 0.1);
+}
+.bubble-1 { width: 100px; height: 100px; top: 10%; left: -20px; }
+.bubble-2 { width: 120px; height: 120px; bottom: 10%; right: -30px; }
+
+/* Điểm số % màu tím chuẩn bài */
+.score-display {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--app-purple);
+    line-height: 1;
+    margin: 15px 0;
+    text-shadow: 0 4px 10px rgba(163, 137, 244, 0.2);
+}
+
+.heart-center {
+    font-size: 1.8rem;
+    color: #ff4d6d; /* Trái tim màu đỏ hồng cho nổi bật trên nền tím */
+    animation: heartbeat 2s infinite;
+}
+
+/* BOX TRẮNG AI PHÁN (Đổi màu viền sang Tím) */
+.ai-comment-box {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: inset 0 2px 10px rgba(163, 137, 244, 0.05);
+    border-left: 5px solid var(--app-purple);
+}
+
+/* Các Animation giữ nguyên vì bạn làm quá tốt */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.animate-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.8s ease-out forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+@keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+}

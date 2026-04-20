@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # MoodToday
 =======
 # 🌟 MoodToday - Emotional Tracking System
@@ -29,5 +29,4 @@ Hệ thống được thiết kế để chạy trên kiến trúc Nginx + PHP-F
 3. Cấu hình file `.env` và tạo Key: `php artisan key:generate`
 4. Chạy Migration: `php artisan migrate`
 
----
->>>>>>> 88d5b7b (Initial commmit)
+

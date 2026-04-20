@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('zalo_id')->unique(); // ID từ Zalo Mini App / tên đăng nhập
-            $table->string('name'); // Tên người dùng
-            $table->string('avatar')->nullable(); // Ảnh đại diện
-            $table->enum('status', ['active', 'blocked'])->default('active'); // Trạng thái
-            $table->timestamps(); // created_at, updated_at
+            $table->string('zalo_id')->unique(); 
+            $table->string('name'); 
+            $table->string('avatar')->nullable(); 
+            $table->enum('status', ['active', 'blocked'])->default('active'); 
+            $table->timestamps(); 
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

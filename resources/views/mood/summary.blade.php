@@ -12,7 +12,7 @@
             <div class="col-6"><small class="text-muted">Tối:</small> <p class="fw-bold">Bình thường 😐</p></div>
         </div>
     </div>
-    <a href="{{ route('mood.history') }}" class="btn btn-primary-custom mt-4">Xem lại hành trình</a>
+    <a href="{{ route('mood.diary') }}" class="btn btn-primary-custom mt-4">Xem lại hành trình</a>
 </div>
 
 @endsection
