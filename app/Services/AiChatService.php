@@ -16,11 +16,28 @@ class AiChatService
         ]);
     }
 
-    public function generateLoveAdvice($name1, $name2)
+    public function generateLoveAdvice($name1, $dob1, $name2, $dob2)
     {
         return $this->askAI('love_percent', [
             'name1' => $name1,
-            'name2' => $name2
+            'dob1' => $dob1,
+            'name2' => $name2,
+            'dob2' => $dob2
+        ]);
+    }
+
+    public function decodeCrushMessage($message)
+    {
+        $params = [
+            'message' => $message
+        ];
+
+        $result = $this->askAI('crush_decoder', $params);
+
+        return $result ?? json_encode([
+            'hidden_meaning' => 'AI đang bận yêu rồi, không giải mã được.',
+            'reply_hint' => 'Hãy cứ là chính mình nhé!',
+            'vibe' => 'Bình thường'
         ]);
     }
 
@@ -45,9 +62,13 @@ class AiChatService
 
         $apiKey = env('GEMINI_API_KEY'); //config('GEMINI_API_KEY'); //services.gemini.api_key
 
-        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
+        // $url = env("GEMINI_BASE_URL") . '?key=' . env('GEMINI_API_KEY');
 
-        $response = Http::post($url, [
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=" . $apiKey;
+        //gemini-3.1-flash-lite-preview
+
+        $response = Http::retry(3, 2000) // Thử lại tối đa 3 lần, mỗi lần cách nhau 2 giây
+            ->withoutVerifying()->post($url, [
             'contents' => [
                 ['parts' => [['text' => $template]]]
             ],
@@ -55,12 +76,19 @@ class AiChatService
                 'response_mime_type' => 'application/json',
             ]
         ]);
+        // ->throw()
 
         //$resultText = data_get($response->json(), 'candidates.0.content.parts.0.text', '{}');
+        // dd($response->json());
 
-        // if ($response->failed()) {
-        //     dd("Lỗi API Gemini:", $response->json());
+        // if ($response->failed() || empty($response->json())) {
+        //     dd([
+        //         'STATUS' => $response->status(),
+        //         'GOOGLE_SAY' => $response->json(),
+        //         'HINT' => 'Nếu thấy 503 là Google đang quá tải, hãy đợi vài giây rồi F5'
+        //     ]);
         // }
+
         return trim($response->json('candidates.0.content.parts.0.text'));
     }
 }

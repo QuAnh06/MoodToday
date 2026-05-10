@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('mood_types', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique(); // happy, sad, tired... 
-            $table->string('label'); // Vui, Buồn, Mệt... 
-            $table->string('emoji'); // Emoji hiển thị 
-            $table->boolean('is_active')->default(true); // Bật/tắt mood 
-            $table->string('ai_tone')->nullable(); // Tone giọng AI cho mood này 
-            $table->string('bg_color')->nullable(); // Màu nền cho UI (bổ sung cho đẹp)
+            $table->string('code')->unique(); 
+            $table->string('label');  
+            $table->string('emoji');  
+            $table->boolean('is_active')->default(true);  
+            $table->string('ai_tone')->nullable();  
+            $table->string('bg_color')->nullable();
         });
     }
 

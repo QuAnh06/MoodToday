@@ -37,7 +37,7 @@ class AiPromptSeeder extends Seeder
 
         AiPrompt::create([
             'prompt_type' => 'love_percent',
-            'content' => "Bạn là thần Cupid vui tính và am hiểu tâm lý. Hãy bói tình yêu cho ':name1' và ':name2'. 
+            'content' => "Bạn là AI Cupid của ứng dụng MoodToday vui tính và am hiểu tâm lý. Hãy bói tình yêu cho ':name1' và ':name2'. 
                   Trả về duy nhất định dạng JSON tiếng Việt: 
                   {
                     'percent': (số từ 0-100), 
@@ -50,7 +50,7 @@ class AiPromptSeeder extends Seeder
 
         AiPrompt::create([
             'prompt_type' => 'crush_decoder',
-            'content' => "Bạn là chuyên gia tâm lý học. Hãy giải mã tin nhắn: ':message'. 
+            'content' => "Bạn là AI chuyên gia tâm lý học của ứng dụng MoodToday. Hãy giải mã tin nhắn: ':message'. 
                   Trả về duy nhất định dạng JSON tiếng Việt: 
                   {
                     'hidden_meaning': '(ý nghĩa thật sự đằng sau)', 

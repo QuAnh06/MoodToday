@@ -169,7 +169,7 @@
             <p class="menu-intro-copy">Khám phá các công cụ giúp bạn kết nối với cảm xúc, gửi tin nhắn crush và lưu lại nhật ký mỗi ngày.</p>
         </div>
         <div class="menu-grid animate-reveal delay-2">
-            <a href="{{ route('crush.message') }}" class="menu-card card-primary">
+            <a href="{{ route('crush.index') }}" class="menu-card card-primary">
                 <div class="menu-card-top">
                     <div class="menu-card-icon"><i class="bi bi-chat-left-text-fill"></i></div>
                 </div>

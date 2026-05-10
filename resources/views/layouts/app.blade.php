@@ -41,8 +41,8 @@
                         <li><a class="dropdown-item rounded-3 py-2" href="{{ route('profile') }}"><i class="bi bi-person me-2"></i>Hồ sơ cá nhân</a></li>
                         <li><a class="dropdown-item rounded-3 py-2" href="{{ route('logout') }}"><i class="bi bi-box-arrow-right me-2 text-danger"></i>Đăng xuất</a></li>
                     @else
-                        <li><a class="dropdown-item rounded-3 py-2" href="{{ route('login') }}"><i class="bi bi-box-arrow-in-right me-2 text-primary"></i>Đăng nhập</a></li>
-                        <li><a class="dropdown-item rounded-3 py-2" href="{{ route('register') }}"><i class="bi bi-person-plus me-2 text-success"></i>Đăng ký mới</a></li>
+                        {{-- <li><a class="dropdown-item rounded-3 py-2" href="{{ route('login') }}"><i class="bi bi-box-arrow-in-right me-2 text-primary"></i>Đăng nhập</a></li>
+                        <li><a class="dropdown-item rounded-3 py-2" href="{{ route('register') }}"><i class="bi bi-person-plus me-2 text-success"></i>Đăng ký mới</a></li> --}}
                     @endauth
                 </ul>
             </div>
@@ -60,7 +60,7 @@
             </a>
             
             <a href="{{ route('home', ['tab' => 'menu']) }}" 
-                class="nav-item {{ (request()->routeIs('home') && request('tab') === 'menu') || request()->routeIs('love.*', 'crush-message*', 'diary*') ? 'active' : '' }}">
+                class="nav-item {{ (request()->routeIs('home') && request('tab') === 'menu') || request()->routeIs('love.*', 'crush.*', 'diary*') ? 'active' : '' }}">
                 
                 <i class="bi bi-grid-3x3-gap-fill"></i>
                 <span>Menu</span>

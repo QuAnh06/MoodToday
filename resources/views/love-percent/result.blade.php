@@ -15,15 +15,15 @@
 
     <div class="result-wrapper animate-reveal delay-1">
         <div class="header-info px-4 pt-4 text-center">
-            <h5 class="fw-bold text-deep-dark">Kết quả: {{ $data->percent }}%</h5>
-            <p class="small text-muted-healing">{{ $data->message }}</p>
+            <h4 class="fw-bold text-deep-dark">Kết quả: {{ $data->percent }}%</h4>
+            <p class=" text-muted-healing">{{ $data->analysis }}</p>
         </div>
 
         <div class="love-card-main mx-auto card-monex-main">
             <div class="bubble bubble-1"></div>
             <div class="bubble bubble-2"></div>
 
-            <h4 class="card-title text-deep-dark mt-4">Tình yêu hôm nay</h4>
+            <h4 class="card-title text-deep-dark mt-4 fw-bold">Tình yêu hôm nay</h4>
             
             <div class="couple-row">
                 <div class="person">
@@ -44,8 +44,11 @@
             </div>
 
             <div class="ai-comment-box shadow-inset">
-                <h6 class="fw-bold mb-1 text-deep-dark">Bói tình yêu</h6>
-                <p class="m-0 small text-deep-muted">{{ $data->message }}</p>
+                <h6 class="fw-bold mb-1 text-deep-dark">Bói tình yêu:</h6>
+                <p class="m-0 text-deep-muted">{{ $data->message }}</p>
+                <hr>
+                <h6 class="fw-bold mb-1 text-deep-dark">Lời Khuyên:</h6>
+                <p class="m-0 text-deep-muted">{{ $data->advice }}</p>
             </div>
         </div>
     </div>

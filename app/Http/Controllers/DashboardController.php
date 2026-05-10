@@ -39,12 +39,13 @@ class DashboardController extends Controller
 
         $maxCount = $moodCounts->max() ?: 1;
 
+        // Mood Chart
         $chartData = $moodTypes->map(function ($type) use ($moodCounts, $maxCount) {
             $count = $moodCounts[$type->id] ?? 0;
             $barHeight = ($count / $maxCount) * 100;
 
             return [
-                'emoji'      => $type->emoji,
+                'emoji'     => $type->emoji,
                 'name'      => $type->name,
                 'count'     => $count,
                 'barHeight' => $barHeight,

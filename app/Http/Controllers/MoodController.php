@@ -34,28 +34,43 @@ class MoodController extends Controller
         
         $log = MoodLog::with('moodType')->findOrFail($log_id); //->where('user_id', Auth::id())
 
-        if (empty($log->ai_result)) {
+        if (empty($log->ai_result) || $log->ai_result == "null") {
             try {
-                $jsonResult = $aiService->generateMoodAdvice($log->user_text, $log->moodType->label);
-                
+                $jsonResult = $aiService->generateMoodAdvice($log->user_text, $log->moodType->code);
+
                 // if (!$jsonResult) {
                 //     dd("API Gemini chưa trả về dữ liệu. Kiểm tra lại API KEY trong .env");
                 // }
 
+                // if (empty($jsonResult)) {
+                //     throw new \Exception("API rỗng, fallback");
+                // }
+
                 $log->update(['ai_result' => $jsonResult]);
+
             } catch (\Exception $e) {
-                $log->update(['ai_result' => json_encode([
-                    'quote' => 'Mọi chuyện rồi sẽ ổn thôi.✨',
-                    'activities' => ['Hít thở sâu', 'Nghe nhạc nhẹ'],
-                    'sharing' => 'Hệ thống đang bận một chút, nhưng mình vẫn ở đây với bạn.'
-                ])]);
+                // $log->update(['ai_result' => json_encode([
+                //     'quote' => 'Mọi chuyện rồi sẽ ổn thôi.✨',
+                //     'activities' => [
+                //         'Hít thở sâu trong 3 phút',
+                //         'Nghe một bản nhạc không lời nhẹ nhàng',
+                //         'Uống một cốc nước ấm'
+                //     ],
+                //     'sharing' => 'Hệ thống đang bận một chút, nhưng mình vẫn ở đây với bạn.'
+                // ])]);
+                // dd("Lỗi khi gọi AI: " . $e->getMessage(), "Tại dòng: " . $e->getLine());
             }
         }
 
         $data = json_decode($log->ai_result);
 
         // if (is_null($data)) {
-        //     dd("Lỗi định dạng JSON:", $log->ai_result);
+        //     dd(
+        //         "Lỗi định dạng JSON!",
+        //         "Dữ liệu nhận được là:",
+        //         $log->ai_result,
+        //         "Gợi ý: Có thể AI trả về text thường thay vì JSON?"
+        //     );
         // }
 
         return view('mood.result', compact('log', 'data'));

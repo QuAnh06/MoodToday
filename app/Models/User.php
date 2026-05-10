@@ -22,6 +22,8 @@ class User extends Authenticatable
         // 'zalo_id',
         'id',
         'name',
+        'email',
+        'password',
         'avatar',
         'status',
     ];

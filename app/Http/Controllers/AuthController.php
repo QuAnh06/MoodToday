@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -15,22 +16,28 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $dataLogin = $request->validate([
-            'zalo_id' => 'required|string|exists:users,zalo_id',
+        $credentials = $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string',
         ]);
 
-        $user = User::where('zalo_id', $dataLogin['zalo_id'])->first();
+        // 2. Thử đăng nhập (Auth::attempt sẽ tự kiểm tra mật khẩu đã hash)
+        // 'remember' giúp lưu phiên đăng nhập nếu bạn có checkbox
+        if (Auth::attempt($credentials, $request->remember)) {
+            
+            if (Auth::user()->status !== 'active') {
+                Auth::logout();
+                return back()->withErrors(['email' => 'Tài khoản của bạn đang bị khóa.']);
+            }
 
-        if (!$user || $user->status !== 'active') {
-            return back()->withErrors(['zalo_id' => 'Tài khoản không hợp lệ hoặc đã bị khóa.'])->withInput();
+            $request->session()->regenerate();
+            return redirect()->intended(route('home'));
         }
 
-        Auth::login($user);
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('home'));
+        return back()->with(
+            'error', 'Thông tin đăng nhập không chính xác.',
+        );
     }
-
 
     public function showRegisterForm()
     {
@@ -40,27 +47,29 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'zalo_id' => 'required|string|max:255|unique:users,zalo_id',
+            'id' => 'required|string|max:255|unique:users,id', 
             'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed', 
         ]);
 
         User::create([
-            'zalo_id' => $request->zalo_id,
+            'id' => $request->id,
             'name' => $request->name,
-            'avatar' => null,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), 
             'status' => 'active',
         ]);
 
         return redirect()->route('login')->with('success', 'Đăng ký thành công, mời bạn đăng nhập!');
     }
 
-    public function logout(Request $request) {
-        
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
-    }    
-
+    }
 }

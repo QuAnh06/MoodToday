@@ -8,9 +8,9 @@
 
 @section('content')
 <div class="app-container pt-4 pb-5">
-    <button type="button" class="btn-back" onclick="history.back();">
+    <a href="{{ route('home', ['tab' => 'menu']) }}" class="btn-back animate-reveal text-decoration-none">
         <i class="bi bi-arrow-left"></i> Back
-    </button>
+    </a>
 
     <div class="page-header animate-reveal">
         <p class="small text-muted mb-2">AI Giải mã tin nhắn crush</p>
@@ -30,15 +30,23 @@
         </div>
     </div>
 
-    <div class="action-card animate-reveal delay-2">
-        <div class="action-row">
-            <button class="btn-action">Dán tin nhắn</button>
-            <button class="btn-action btn-outline">Sao chép</button>
+    <form action="{{ route('crush.store') }}" method="POST">
+        @csrf
+        <div class="action-card animate-reveal delay-2">
+            <div class="action-row">
+                <button type="button" class="btn-action">Dán tin nhắn</button>
+                <button type="button" class="btn-action btn-outline" onclick="document.querySelector('textarea').value = ''">Xóa</button>
+            </div>
+            
+            <textarea name="message" class="form-control-monex message-area @error('message') is-invalid @enderror" rows="6" placeholder="Dán tin nhắn crush vào đây...">{{ old('message') }}</textarea>
+            
+            @error('message')
+                <div class="text-danger small mt-2">{{ $message }}</div>
+            @enderror
         </div>
-        <textarea class="form-control-monex message-area" rows="6" placeholder="Dán tin nhắn crush vào đây..." ></textarea>
-    </div>
 
-    <button class="btn-monex-premium w-100 mt-4">AI phân tích</button>
+        <button type="submit" class="btn-monex-premium w-100 mt-4">AI phân tích</button>
+    </form>
 </div>
 
 @endsection
