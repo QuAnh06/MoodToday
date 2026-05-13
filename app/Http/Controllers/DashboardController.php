@@ -116,6 +116,4 @@ class DashboardController extends Controller
         return view('profile');
     }
 
-
-    
 }
